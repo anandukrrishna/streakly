@@ -11,6 +11,8 @@
   
   <title>Streakly | 30-Day Habit Tracker</title>
 
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
@@ -73,6 +75,11 @@
           <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           <span>Settings</span>
         </button>
+
+        <button class="nav-pill-btn pwa-install-trigger" id="sidebar-btn-install" style="display:none;" title="Install Streakly on your Windows laptop">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Install App</span>
+        </button>
       </nav>
 
       <!-- Sidebar User Profile Footer -->
@@ -119,6 +126,12 @@
         </div>
 
         <div class="topbar-right">
+          <!-- Install App Trigger (Windows & Android) -->
+          <button class="btn-install-header pwa-install-trigger" id="header-btn-install" style="display:none;" title="Install Streakly as an App">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Install App</span>
+          </button>
+
           <!-- Mobile Theme Switcher -->
           <button class="icon-btn btn-theme-toggle mobile-theme-btn" title="Toggle Theme" aria-label="Toggle Theme">
             <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -151,6 +164,26 @@
       <section class="screen-view" id="view-analysis"></section>
       <section class="screen-view" id="view-history"></section>
     </main>
+
+    <!-- Floating Install Banner for Mobile (Samsung Galaxy S23) -->
+    <aside class="mobile-install-banner glass-card" id="mobile-install-banner" style="display:none;" aria-label="Install App">
+      <div class="install-banner-left">
+        <div class="install-banner-icon">
+          <svg viewBox="0 0 100 100" width="28" height="28">
+            <rect width="100" height="100" rx="26" fill="url(#sideLogoGrad)"/>
+            <path d="M 28 50 L 44 66 L 74 32" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="install-banner-text">
+          <span class="install-banner-title">Install Streakly</span>
+          <span class="install-banner-sub">Works offline • Fast home launch</span>
+        </div>
+      </div>
+      <div class="install-banner-actions">
+        <button class="btn-primary-glass btn-sm pwa-install-trigger" id="banner-btn-install">Install</button>
+        <button class="icon-btn btn-sm btn-dismiss-banner" id="btn-dismiss-install-banner" aria-label="Dismiss">&times;</button>
+      </div>
+    </aside>
 
     <!-- Mobile Bottom Tab Bar -->
     <nav class="mobile-tabbar glass-panel" id="mobile-tabbar">
@@ -419,6 +452,27 @@
       </div>
 
       <div class="modal-body form-stacked">
+        <!-- Section: PWA App Installation -->
+        <div class="settings-group">
+          <h4 class="settings-group-title">📲 Install App (PWA)</h4>
+          <p class="settings-group-sub">Install Streakly on your Windows ASUS laptop or Samsung Galaxy S23 for standalone offline use.</p>
+          <div class="settings-row">
+            <button class="btn-primary-glass pwa-install-trigger" id="settings-btn-install">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Install Streakly
+            </button>
+            <span class="pwa-status-text" id="settings-pwa-status">Checking install status...</span>
+          </div>
+          <div class="pwa-guide-hints">
+            <div class="hint-item">
+              <strong>Windows (Edge/Chrome):</strong> Look for the <em>Install Streakly</em> icon in the right side of the address bar or press the Install button above.
+            </div>
+            <div class="hint-item">
+              <strong>Galaxy S23 (Chrome/Samsung Internet):</strong> Tap <em>Install</em>, or tap the three dots / menu icon &rarr; <em>"Add to Home screen" / "Install app"</em>.
+            </div>
+          </div>
+        </div>
+
         <!-- Section: Daily Reminder -->
         <div class="settings-group">
           <h4 class="settings-group-title">🔔 Daily Reminder Notification</h4>

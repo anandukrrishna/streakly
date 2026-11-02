@@ -1,0 +1,14 @@
+{
+  "name": "streakly",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Streakly - 30-Day Offline Habit Tracker & Automatic Cycles",
+  "scripts": {
+    "start": "npx serve -l 8080 .",
+    "serve": "npx serve .",
+    "deploy": "firebase deploy"
+  },
+  "keywords": ["pwa", "habit-tracker", "offline", "firestore"],
+  "author": "Anandu Krishna",
+  "license": "MIT"
+}

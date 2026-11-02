@@ -66,6 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup theme switchers
   setupThemeToggle();
 
+  // Setup PWA Installation across Windows & Samsung Galaxy S23 Android
+  setupPWAInstall();
+
+  // Setup Windows ASUS laptop keyboard shortcuts
+  setupLaptopKeyboardShortcuts();
+
+  // Handle URL query parameter view routing (shortcuts / PWA launches)
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedView = urlParams.get('view');
+  if (['tracker', 'metrics', 'analysis', 'history'].includes(requestedView)) {
+    currentActiveView = requestedView;
+  }
+
   // Setup reactive state listener
   onStateChange((state, meta) => {
     // If an auto-rollover occurred, show the Cycle Complete Summary modal!
@@ -605,5 +618,137 @@ function registerServiceWorker() {
         });
     });
   }
+}
+
+/**
+ * PWA Installation System
+ * Supports Chrome & Edge on Windows (ASUS) and Chrome & Samsung Internet on Android (Galaxy S23).
+ */
+let deferredInstallPrompt = null;
+
+function setupPWAInstall() {
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const pwaStatusEl = document.getElementById('settings-pwa-status');
+
+  if (isStandalone) {
+    if (pwaStatusEl) pwaStatusEl.textContent = 'Installed & running standalone';
+    hideInstallPrompts();
+    return;
+  } else {
+    if (pwaStatusEl) pwaStatusEl.textContent = 'Available to install';
+  }
+
+  // Intercept Chromium & Samsung Internet install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    console.log('Streakly: PWA install prompt ready');
+    showInstallPrompts();
+  });
+
+  // Track successful installation
+  window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    hideInstallPrompts();
+    if (pwaStatusEl) pwaStatusEl.textContent = 'Installed & running standalone';
+    console.log('Streakly: PWA successfully installed');
+  });
+
+  // Wire all install triggers
+  document.querySelectorAll('.pwa-install-trigger').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        console.log('Streakly install prompt choice:', outcome);
+        if (outcome === 'accepted') {
+          hideInstallPrompts();
+        }
+        deferredInstallPrompt = null;
+      } else {
+        // Fallback for Samsung Internet or browsers where prompt event hasn't fired
+        alert('To install Streakly:\n• In Chrome/Edge (Windows): Click the Install icon in the right side of the address bar.\n• In Samsung Internet / Chrome (Galaxy S23): Tap the menu (⋮ or ☰) and select "Add to Home screen" or "Install app".');
+      }
+    });
+  });
+
+  // Mobile banner dismiss button
+  const btnDismissBanner = document.getElementById('btn-dismiss-install-banner');
+  if (btnDismissBanner) {
+    btnDismissBanner.addEventListener('click', () => {
+      const banner = document.getElementById('mobile-install-banner');
+      if (banner) banner.style.display = 'none';
+      sessionStorage.setItem('streakly_install_banner_dismissed', 'true');
+    });
+  }
+}
+
+function showInstallPrompts() {
+  // Show header install button
+  const headerBtn = document.getElementById('header-btn-install');
+  if (headerBtn) headerBtn.style.display = 'inline-flex';
+
+  // Show sidebar install button
+  const sidebarBtn = document.getElementById('sidebar-btn-install');
+  if (sidebarBtn) sidebarBtn.style.display = 'flex';
+
+  // Show mobile install banner on phone if not dismissed this session
+  const bannerDismissed = sessionStorage.getItem('streakly_install_banner_dismissed');
+  if (!bannerDismissed && window.innerWidth <= 900) {
+    const banner = document.getElementById('mobile-install-banner');
+    if (banner) banner.style.display = 'flex';
+  }
+
+  const pwaStatusEl = document.getElementById('settings-pwa-status');
+  if (pwaStatusEl) pwaStatusEl.textContent = 'Ready to install on this device';
+}
+
+function hideInstallPrompts() {
+  const headerBtn = document.getElementById('header-btn-install');
+  if (headerBtn) headerBtn.style.display = 'none';
+
+  const sidebarBtn = document.getElementById('sidebar-btn-install');
+  if (sidebarBtn) sidebarBtn.style.display = 'none';
+
+  const banner = document.getElementById('mobile-install-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+/**
+ * Laptop Keyboard Shortcuts (Windows ASUS laptop)
+ * 1: Daily Tracker
+ * 2: Habit Metrics
+ * 3: Analysis
+ * 4: Cycle History
+ * T: Toggle Today Card vs Full Table on Mobile/Tablet view
+ */
+function setupLaptopKeyboardShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    // Ignore keystrokes when typing into input fields
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target.isContentEditable) {
+      return;
+    }
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+    if (e.key === '1') {
+      navigateToView('tracker');
+    } else if (e.key === '2') {
+      navigateToView('metrics');
+    } else if (e.key === '3') {
+      navigateToView('analysis');
+    } else if (e.key === '4') {
+      navigateToView('history');
+    } else if (e.key === 't' || e.key === 'T') {
+      // Toggle Today view vs Full Table if currently on Tracker screen
+      if (currentActiveView === 'tracker') {
+        const btnToday = document.getElementById('btn-toggle-today-view');
+        const btnTable = document.getElementById('btn-toggle-table-view');
+        const isTableActive = btnTable && btnTable.classList.contains('active');
+        if (isTableActive && btnToday) btnToday.click();
+        else if (btnTable) btnTable.click();
+      }
+    }
+  });
 }
 

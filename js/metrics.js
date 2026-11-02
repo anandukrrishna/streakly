@@ -123,28 +123,18 @@ export function renderMetrics(targetCycle = null) {
             <!-- 30-Day Ratings Horizontal Strip -->
             <div class="ratings-strip-container">
               <div class="ratings-strip-scroll">
-                <div class="ratings-grid">
-                  <!-- Row 1: Day Numbers & Real Date -->
-                  <div class="ratings-days-row">
-                    ${cycleDays.map(d => {
-                      const isToday = d.dayNumber === todayDayNumber;
-                      return `
-                        <div class="rating-day-col ${d.isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''}">
-                          <span class="r-day-num">D${d.dayNumber}</span>
-                          <span class="r-day-date">${d.displayDate}</span>
+                <div class="ratings-columns-strip">
+                  ${cycleDays.map(d => {
+                    const val = catRatings[d.dayNumber];
+                    const hasVal = (typeof val === 'number' && val >= 1 && val <= 5);
+                    const isToday = d.dayNumber === todayDayNumber;
+
+                    return `
+                      <div class="rating-day-unit ${d.isWeekend ? 'is-weekend' : ''} ${isToday ? 'is-today' : ''}">
+                        <div class="r-unit-header">
+                          <span class="r-unit-day">D${d.dayNumber}</span>
+                          <span class="r-unit-date">${d.displayDate}</span>
                         </div>
-                      `;
-                    }).join('')}
-                  </div>
-
-                  <!-- Row 2: 30 Rating Inputs (1..5) -->
-                  <div class="ratings-inputs-row">
-                    ${cycleDays.map(d => {
-                      const val = catRatings[d.dayNumber];
-                      const hasVal = (typeof val === 'number' && val >= 1 && val <= 5);
-                      const isToday = d.dayNumber === todayDayNumber;
-
-                      return `
                         <button class="rating-input-cell score-${hasVal ? val : 'empty'} ${isToday ? 'today-cell' : ''}"
                                 data-category-id="${cat.id}"
                                 data-day="${d.dayNumber}"
@@ -153,9 +143,9 @@ export function renderMetrics(targetCycle = null) {
                                 title="Day ${d.dayNumber} (${d.displayDate}) rating: ${hasVal ? val + '/5' : 'Unrated'}. Click to rate.">
                           <span class="rating-cell-val">${hasVal ? val : '–'}</span>
                         </button>
-                      `;
-                    }).join('')}
-                  </div>
+                      </div>
+                    `;
+                  }).join('')}
                 </div>
               </div>
             </div>

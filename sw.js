@@ -14,6 +14,8 @@ const ASSETS_TO_PRECACHE = [
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
   './icons/favicon.svg',
+  './icons/screenshot-desktop.png',
+  './icons/screenshot-mobile.png',
   './vendor/chart.umd.min.js',
   './vendor/firebase-app.js',
   './vendor/firebase-auth.js',

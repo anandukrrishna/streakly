@@ -1,24 +1,28 @@
 {
   "name": "Streakly | 30-Day Habit Tracker",
   "short_name": "Streakly",
+  "id": "streakly-habit-tracker-30days",
   "description": "A 30-day habit tracker that works offline, syncs across phone and laptop, and rolls over automatically.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "orientation": "any",
   "background_color": "#0b0f19",
-  "theme_color": "#4f46e5",
+  "theme_color": "#0f172a",
   "categories": ["productivity", "lifestyle", "health"],
   "icons": [
     {
       "src": "./icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "./icons/icon-maskable-512.png",
@@ -31,6 +35,44 @@
       "sizes": "any",
       "type": "image/svg+xml"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "./icons/screenshot-desktop.png",
+      "sizes": "640x360",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Streakly Habit Tracker on Laptop"
+    },
+    {
+      "src": "./icons/screenshot-mobile.png",
+      "sizes": "360x780",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Streakly Today View on Galaxy S23"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Daily Tracker",
+      "short_name": "Tracker",
+      "description": "View today's habits and full 30-day table",
+      "url": "./index.html?view=tracker",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Habit Metrics",
+      "short_name": "Metrics",
+      "description": "Log 1-5 ratings and view momentum graphs",
+      "url": "./index.html?view=metrics",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Habit Analysis",
+      "short_name": "Analysis",
+      "description": "Inspect consistency trends and heatmap",
+      "url": "./index.html?view=analysis",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }
-

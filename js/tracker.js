@@ -274,13 +274,13 @@ function renderHabitRows(habits, cycle, cycleDays, todayDayNumber, isReadOnly) {
           const isToday = d.dayNumber === todayDayNumber;
           
           let cellStateClass = 'status-blank';
-          let symbol = '';
+          let glyphHtml = '<span class="blank-squircle"></span>';
           if (status === 1) {
             cellStateClass = 'status-done';
-            symbol = '✓';
+            glyphHtml = '<span class="glyph-done-badge"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>';
           } else if (status === 2) {
             cellStateClass = 'status-notdone';
-            symbol = '✗';
+            glyphHtml = '<span class="glyph-notdone-badge"><svg viewBox="0 0 24 24" width="11" height="11" stroke="currentColor" stroke-width="3" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>';
           }
 
           const cellClasses = [
@@ -298,7 +298,7 @@ function renderHabitRows(habits, cycle, cycleDays, todayDayNumber, isReadOnly) {
                 tabindex="${isReadOnly ? '-1' : '0'}"
                 aria-label="${escapeHtml(habit.name)} Day ${d.dayNumber}: ${status === 1 ? 'Completed' : status === 2 ? 'Not done' : 'Blank'}"
                 title="Day ${d.dayNumber} (${d.displayDate}, ${d.weekday}) - Tap to toggle">
-              <span class="cell-glyph">${symbol}</span>
+              <div class="cell-glyph-wrapper">${glyphHtml}</div>
             </td>
           `;
         }).join('')}
@@ -416,16 +416,16 @@ function renderMobileTodayCard(cycle, cycleDays, todayDayNumber, isReadOnly) {
 
           let statusClass = 'card-status-blank';
           let statusText = 'Tap to Mark';
-          let icon = '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>';
+          let ringHtml = '<span class="ios-checkbox-ring ring-blank"></span>';
 
           if (status === 1) {
             statusClass = 'card-status-done';
             statusText = 'Completed';
-            icon = '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2.5" fill="none"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2.5" fill="none"/>';
+            ringHtml = '<span class="ios-checkbox-ring ring-done"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"/></svg></span>';
           } else if (status === 2) {
             statusClass = 'card-status-notdone';
             statusText = 'Not Done';
-            icon = '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2"/><line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2"/>';
+            ringHtml = '<span class="ios-checkbox-ring ring-notdone"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="3" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>';
           }
 
           return `
@@ -443,9 +443,9 @@ function renderMobileTodayCard(cycle, cycleDays, todayDayNumber, isReadOnly) {
               </div>
               <div class="today-action-target">
                 <span class="action-status-label">${statusText}</span>
-                <span class="action-icon-wrap">
-                  <svg viewBox="0 0 24 24" width="28" height="28">${icon}</svg>
-                </span>
+                <div class="action-icon-wrap">
+                  ${ringHtml}
+                </div>
               </div>
             </div>
           `;
