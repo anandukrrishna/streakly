@@ -1,0 +1,36 @@
+{
+  "name": "Streakly | 30-Day Habit Tracker",
+  "short_name": "Streakly",
+  "description": "A 30-day habit tracker that works offline, syncs across phone and laptop, and rolls over automatically.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0f19",
+  "theme_color": "#4f46e5",
+  "categories": ["productivity", "lifestyle", "health"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+
