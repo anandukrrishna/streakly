@@ -39,35 +39,37 @@
         <div class="brand-logo-wrap">
           <svg viewBox="0 0 100 100" width="34" height="34" class="streakly-brand-icon">
             <defs>
-              <linearGradient id="obsidianBgSide" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#181B22" />
-                <stop offset="50%" stop-color="#0E1015" />
-                <stop offset="100%" stop-color="#050608" />
+              <linearGradient id="obsidianBaseSide" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#14161B" />
+                <stop offset="45%" stop-color="#0A0B0E" />
+                <stop offset="100%" stop-color="#020304" />
               </linearGradient>
-              <linearGradient id="specularRimSide" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.45)" />
-                <stop offset="40%" stop-color="rgba(255, 255, 255, 0.12)" />
-                <stop offset="100%" stop-color="rgba(0, 0, 0, 0.6)" />
+              <linearGradient id="silverRimBevelSide" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.75)" />
+                <stop offset="25%" stop-color="rgba(200, 210, 225, 0.35)" />
+                <stop offset="65%" stop-color="rgba(255, 255, 255, 0.08)" />
+                <stop offset="100%" stop-color="rgba(255, 255, 255, 0.2)" />
               </linearGradient>
-              <linearGradient id="outerFlameGradSide" x1="20%" y1="0%" x2="80%" y2="100%">
-                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.95)" />
-                <stop offset="25%" stop-color="rgba(196, 220, 255, 0.85)" />
-                <stop offset="55%" stop-color="rgba(139, 92, 246, 0.75)" />
-                <stop offset="85%" stop-color="rgba(59, 130, 246, 0.9)" />
-                <stop offset="100%" stop-color="rgba(46, 184, 114, 0.85)" />
+              <linearGradient id="liquidGlassBodySide" x1="15%" y1="5%" x2="85%" y2="95%">
+                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.65)" />
+                <stop offset="20%" stop-color="rgba(235, 242, 255, 0.35)" />
+                <stop offset="50%" stop-color="rgba(190, 205, 225, 0.12)" />
+                <stop offset="80%" stop-color="rgba(220, 230, 245, 0.22)" />
+                <stop offset="100%" stop-color="rgba(255, 255, 255, 0.45)" />
               </linearGradient>
-              <linearGradient id="innerCoreGradSide" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="40%" stop-color="#93C5FD" />
-                <stop offset="70%" stop-color="#3B82F6" />
-                <stop offset="100%" stop-color="#2EB872" />
+              <linearGradient id="causticInnerCoreSide" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(255, 255, 255, 0.9)" />
+                <stop offset="50%" stop-color="rgba(215, 230, 250, 0.4)" />
+                <stop offset="100%" stop-color="rgba(160, 180, 205, 0.15)" />
               </linearGradient>
             </defs>
-            <rect x="2" y="2" width="96" height="96" rx="25" fill="url(#obsidianBgSide)" stroke="url(#specularRimSide)" stroke-width="1.2" />
-            <path d="M 50 16 C 50 16, 32 34, 32 53 C 32 67, 40 76, 50 82 C 38 75, 36 62, 42 50 C 44 45, 48 38, 50 16 Z" fill="rgba(255, 255, 255, 0.28)" />
-            <path d="M 50 16 C 52 26, 68 38, 68 56 C 68 71, 58 83, 50 84 C 42 83, 32 71, 32 56 C 32 38, 48 26, 50 16 Z" fill="url(#outerFlameGradSide)" />
-            <path d="M 50 34 C 51 40, 60 48, 60 59 C 60 69, 54 75, 50 76 C 46 75, 40 69, 40 59 C 40 48, 49 40, 50 34 Z" fill="url(#innerCoreGradSide)" />
-            <path d="M 50 20 C 51 25, 54 30, 56 36 C 52 32, 48 26, 50 20 Z" fill="#FFFFFF" opacity="0.9" />
+            <rect x="2" y="2" width="96" height="96" rx="26" fill="url(#obsidianBaseSide)" stroke="url(#silverRimBevelSide)" stroke-width="1.2" />
+            <ellipse cx="50" cy="58" rx="26" ry="24" fill="rgba(255, 255, 255, 0.04)" />
+            <path d="M 50 16 C 52 26, 69 39, 69 57 C 69 72, 59 84, 50 84 C 41 84, 31 72, 31 57 C 31 39, 48 26, 50 16 Z" fill="url(#liquidGlassBodySide)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1" />
+            <path d="M 50 18 C 50 18, 35 34, 35 52 C 35 65, 42 75, 50 80 C 40 73, 38 61, 43 49 C 45 44, 48 37, 50 18 Z" fill="rgba(255, 255, 255, 0.2)" />
+            <path d="M 50 34 C 51 41, 60 48, 60 59 C 60 68, 55 75, 50 76 C 45 75, 40 68, 40 59 C 40 48, 49 41, 50 34 Z" fill="url(#causticInnerCoreSide)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="0.8" />
+            <path d="M 50 19 C 51 24, 53 28, 55 33 C 52 30, 48 24, 50 19 Z" fill="#FFFFFF" opacity="0.95" />
+            <ellipse cx="50" cy="27" rx="10" ry="3" fill="rgba(255, 255, 255, 0.3)" />
           </svg>
         </div>
         <div class="brand-text">
@@ -180,11 +182,13 @@
         <div class="topbar-left">
           <div class="mobile-brand">
             <svg viewBox="0 0 100 100" width="28" height="28" class="streakly-brand-icon">
-              <rect x="2" y="2" width="96" height="96" rx="25" fill="url(#obsidianBgSide)" stroke="url(#specularRimSide)" stroke-width="1.2" />
-              <path d="M 50 16 C 50 16, 32 34, 32 53 C 32 67, 40 76, 50 82 C 38 75, 36 62, 42 50 C 44 45, 48 38, 50 16 Z" fill="rgba(255, 255, 255, 0.28)" />
-              <path d="M 50 16 C 52 26, 68 38, 68 56 C 68 71, 58 83, 50 84 C 42 83, 32 71, 32 56 C 32 38, 48 26, 50 16 Z" fill="url(#outerFlameGradSide)" />
-              <path d="M 50 34 C 51 40, 60 48, 60 59 C 60 69, 54 75, 50 76 C 46 75, 40 69, 40 59 C 40 48, 49 40, 50 34 Z" fill="url(#innerCoreGradSide)" />
-              <path d="M 50 20 C 51 25, 54 30, 56 36 C 52 32, 48 26, 50 20 Z" fill="#FFFFFF" opacity="0.9" />
+              <rect x="2" y="2" width="96" height="96" rx="26" fill="url(#obsidianBaseSide)" stroke="url(#silverRimBevelSide)" stroke-width="1.2" />
+              <ellipse cx="50" cy="58" rx="26" ry="24" fill="rgba(255, 255, 255, 0.04)" />
+              <path d="M 50 16 C 52 26, 69 39, 69 57 C 69 72, 59 84, 50 84 C 41 84, 31 72, 31 57 C 31 39, 48 26, 50 16 Z" fill="url(#liquidGlassBodySide)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1" />
+              <path d="M 50 18 C 50 18, 35 34, 35 52 C 35 65, 42 75, 50 80 C 40 73, 38 61, 43 49 C 45 44, 48 37, 50 18 Z" fill="rgba(255, 255, 255, 0.2)" />
+              <path d="M 50 34 C 51 41, 60 48, 60 59 C 60 68, 55 75, 50 76 C 45 75, 40 68, 40 59 C 40 48, 49 41, 50 34 Z" fill="url(#causticInnerCoreSide)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="0.8" />
+              <path d="M 50 19 C 51 24, 53 28, 55 33 C 52 30, 48 24, 50 19 Z" fill="#FFFFFF" opacity="0.95" />
+              <ellipse cx="50" cy="27" rx="10" ry="3" fill="rgba(255, 255, 255, 0.3)" />
             </svg>
             <span class="mobile-brand-title">Streakly</span>
           </div>
@@ -259,11 +263,13 @@
       <div class="install-banner-left">
         <div class="install-banner-icon">
           <svg viewBox="0 0 100 100" width="28" height="28" class="streakly-brand-icon">
-            <rect x="2" y="2" width="96" height="96" rx="25" fill="url(#obsidianBgSide)" stroke="url(#specularRimSide)" stroke-width="1.2" />
-            <path d="M 50 16 C 50 16, 32 34, 32 53 C 32 67, 40 76, 50 82 C 38 75, 36 62, 42 50 C 44 45, 48 38, 50 16 Z" fill="rgba(255, 255, 255, 0.28)" />
-            <path d="M 50 16 C 52 26, 68 38, 68 56 C 68 71, 58 83, 50 84 C 42 83, 32 71, 32 56 C 32 38, 48 26, 50 16 Z" fill="url(#outerFlameGradSide)" />
-            <path d="M 50 34 C 51 40, 60 48, 60 59 C 60 69, 54 75, 50 76 C 46 75, 40 69, 40 59 C 40 48, 49 40, 50 34 Z" fill="url(#innerCoreGradSide)" />
-            <path d="M 50 20 C 51 25, 54 30, 56 36 C 52 32, 48 26, 50 20 Z" fill="#FFFFFF" opacity="0.9" />
+            <rect x="2" y="2" width="96" height="96" rx="26" fill="url(#obsidianBaseSide)" stroke="url(#silverRimBevelSide)" stroke-width="1.2" />
+            <ellipse cx="50" cy="58" rx="26" ry="24" fill="rgba(255, 255, 255, 0.04)" />
+            <path d="M 50 16 C 52 26, 69 39, 69 57 C 69 72, 59 84, 50 84 C 41 84, 31 72, 31 57 C 31 39, 48 26, 50 16 Z" fill="url(#liquidGlassBodySide)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1" />
+            <path d="M 50 18 C 50 18, 35 34, 35 52 C 35 65, 42 75, 50 80 C 40 73, 38 61, 43 49 C 45 44, 48 37, 50 18 Z" fill="rgba(255, 255, 255, 0.2)" />
+            <path d="M 50 34 C 51 41, 60 48, 60 59 C 60 68, 55 75, 50 76 C 45 75, 40 68, 40 59 C 40 48, 49 41, 50 34 Z" fill="url(#causticInnerCoreSide)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="0.8" />
+            <path d="M 50 19 C 51 24, 53 28, 55 33 C 52 30, 48 24, 50 19 Z" fill="#FFFFFF" opacity="0.95" />
+            <ellipse cx="50" cy="27" rx="10" ry="3" fill="rgba(255, 255, 255, 0.3)" />
           </svg>
         </div>
         <div class="install-banner-text">
@@ -323,11 +329,13 @@
       <div class="modal-header">
         <div class="modal-brand-badge">
           <svg viewBox="0 0 100 100" width="36" height="36" class="streakly-brand-icon">
-            <rect x="2" y="2" width="96" height="96" rx="25" fill="url(#obsidianBgSide)" stroke="url(#specularRimSide)" stroke-width="1.2" />
-            <path d="M 50 16 C 50 16, 32 34, 32 53 C 32 67, 40 76, 50 82 C 38 75, 36 62, 42 50 C 44 45, 48 38, 50 16 Z" fill="rgba(255, 255, 255, 0.28)" />
-            <path d="M 50 16 C 52 26, 68 38, 68 56 C 68 71, 58 83, 50 84 C 42 83, 32 71, 32 56 C 32 38, 48 26, 50 16 Z" fill="url(#outerFlameGradSide)" />
-            <path d="M 50 34 C 51 40, 60 48, 60 59 C 60 69, 54 75, 50 76 C 46 75, 40 69, 40 59 C 40 48, 49 40, 50 34 Z" fill="url(#innerCoreGradSide)" />
-            <path d="M 50 20 C 51 25, 54 30, 56 36 C 52 32, 48 26, 50 20 Z" fill="#FFFFFF" opacity="0.9" />
+            <rect x="2" y="2" width="96" height="96" rx="26" fill="url(#obsidianBaseSide)" stroke="url(#silverRimBevelSide)" stroke-width="1.2" />
+            <ellipse cx="50" cy="58" rx="26" ry="24" fill="rgba(255, 255, 255, 0.04)" />
+            <path d="M 50 16 C 52 26, 69 39, 69 57 C 69 72, 59 84, 50 84 C 41 84, 31 72, 31 57 C 31 39, 48 26, 50 16 Z" fill="url(#liquidGlassBodySide)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1" />
+            <path d="M 50 18 C 50 18, 35 34, 35 52 C 35 65, 42 75, 50 80 C 40 73, 38 61, 43 49 C 45 44, 48 37, 50 18 Z" fill="rgba(255, 255, 255, 0.2)" />
+            <path d="M 50 34 C 51 41, 60 48, 60 59 C 60 68, 55 75, 50 76 C 45 75, 40 68, 40 59 C 40 48, 49 41, 50 34 Z" fill="url(#causticInnerCoreSide)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="0.8" />
+            <path d="M 50 19 C 51 24, 53 28, 55 33 C 52 30, 48 24, 50 19 Z" fill="#FFFFFF" opacity="0.95" />
+            <ellipse cx="50" cy="27" rx="10" ry="3" fill="rgba(255, 255, 255, 0.3)" />
           </svg>
           <span class="modal-brand-title">Streakly Sync</span>
         </div>
