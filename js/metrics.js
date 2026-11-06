@@ -20,28 +20,28 @@ import {
 // Chart.js instances map to clean up on re-render
 const chartInstances = {};
 
-// Color themes for the three categories
+// Color themes for the three categories (Royal Violet, Sapphire, Emerald)
 const CATEGORY_COLORS = [
   {
     primary: '#8b5cf6',
     border: '#a78bfa',
-    bg: 'rgba(139, 92, 246, 0.15)',
+    bg: 'rgba(139, 92, 246, 0.12)',
     pointBg: '#c4b5fd',
     accentGrad: 'linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(168, 85, 247, 0.1))'
   },
   {
-    primary: '#06b6d4',
-    border: '#38bdf8',
-    bg: 'rgba(6, 182, 212, 0.15)',
-    pointBg: '#7dd3fc',
-    accentGrad: 'linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(59, 130, 246, 0.1))'
+    primary: '#38bdf8',
+    border: '#7dd3fc',
+    bg: 'rgba(56, 189, 248, 0.12)',
+    pointBg: '#bae6fd',
+    accentGrad: 'linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(59, 130, 246, 0.1))'
   },
   {
-    primary: '#f59e0b',
-    border: '#fbbf24',
-    bg: 'rgba(245, 158, 11, 0.15)',
-    pointBg: '#fde68a',
-    accentGrad: 'linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(236, 72, 153, 0.1))'
+    primary: '#2eb872',
+    border: '#4ade80',
+    bg: 'rgba(46, 184, 114, 0.12)',
+    pointBg: '#86efac',
+    accentGrad: 'linear-gradient(135deg, rgba(46, 184, 114, 0.25), rgba(34, 197, 94, 0.1))'
   }
 ];
 
