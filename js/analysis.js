@@ -151,7 +151,9 @@ export function renderAnalysis(targetCycle = null) {
         </div>
         <div class="kpi-highlight-list">
           <div class="kpi-stat-item">
-            <div class="kpi-stat-icon icon-best-streak">🔥</div>
+            <div class="kpi-stat-icon icon-best-streak">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+            </div>
             <div class="kpi-stat-info">
               <span class="stat-meta-label">Best Active Streak</span>
               <span class="stat-main-val">${getBestActiveStreakText(habitStats)}</span>
@@ -159,7 +161,9 @@ export function renderAnalysis(targetCycle = null) {
           </div>
 
           <div class="kpi-stat-item">
-            <div class="kpi-stat-icon icon-star-habit">🏆</div>
+            <div class="kpi-stat-icon icon-star-habit">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
             <div class="kpi-stat-info">
               <span class="stat-meta-label">Star Habit</span>
               <span class="stat-main-val">${getStarHabitText(habitStats)}</span>
@@ -167,7 +171,9 @@ export function renderAnalysis(targetCycle = null) {
           </div>
 
           <div class="kpi-stat-item">
-            <div class="kpi-stat-icon icon-focus-habit">🎯</div>
+            <div class="kpi-stat-icon icon-focus-habit">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            </div>
             <div class="kpi-stat-info">
               <span class="stat-meta-label">Growth Opportunity</span>
               <span class="stat-main-val">${getWeakestHabitText(habitStats)}</span>
@@ -210,13 +216,15 @@ export function renderAnalysis(targetCycle = null) {
     <!-- Plain English Insights Card -->
     <div class="insights-card glass-card">
       <div class="insights-card-header">
-        <span class="insights-icon">💡</span>
+        <span class="insights-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>
+        </span>
         <h2 class="insights-title">Smart Insights & Observations</h2>
       </div>
       <div class="insights-list">
         ${insights.map(i => `
           <div class="insight-item">
-            <span class="insight-bullet">${i.emoji}</span>
+            <span class="insight-bullet">${i.iconHtml || '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>'}</span>
             <p class="insight-text">${i.text}</p>
           </div>
         `).join('')}
@@ -617,7 +625,7 @@ function generateInsights(overallRate, habitStats, bestDay, worstDay, weeklyTren
   // Best day insight
   if (bestDay && bestDay.rate > 0) {
     items.push({
-      emoji: '🔥',
+      iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>',
       text: `You do best on <strong>${bestDay.name}s</strong> with an average completion rate of <strong>${bestDay.rate}%</strong>.`
     });
   }
@@ -625,7 +633,7 @@ function generateInsights(overallRate, habitStats, bestDay, worstDay, weeklyTren
   // Toughest day insight
   if (worstDay && worstDay.rate < (bestDay ? bestDay.rate : 100)) {
     items.push({
-      emoji: '⚡',
+      iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
       text: `<strong>${worstDay.name}s</strong> have been your toughest days (${worstDay.rate}%). Consider frontloading your key tasks earlier in the day.`
     });
   }
@@ -638,14 +646,14 @@ function generateInsights(overallRate, habitStats, bestDay, worstDay, weeklyTren
 
     if (weakest.rate < strongest.rate) {
       items.push({
-        emoji: '🎯',
+        iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>',
         text: `<strong>${escapeHtml(weakest.name)}</strong> is your weakest habit (${weakest.rate}% completion). Pair it with an existing routine to build stickiness.`
       });
     }
 
     if (strongest.rate > 0) {
       items.push({
-        emoji: '🏆',
+        iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>',
         text: `<strong>${escapeHtml(strongest.name)}</strong> is your star habit with <strong>${strongest.rate}%</strong> completion!`
       });
     }
@@ -655,7 +663,7 @@ function generateInsights(overallRate, habitStats, bestDay, worstDay, weeklyTren
   const longestStreakHabit = [...habitStats].sort((a, b) => b.longestStreak - a.longestStreak)[0];
   if (longestStreakHabit && longestStreakHabit.longestStreak >= 3) {
     items.push({
-      emoji: '🚀',
+      iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
       text: `Your longest streak this cycle is <strong>${longestStreakHabit.longestStreak} days in a row</strong> on <em>${escapeHtml(longestStreakHabit.name)}</em>.`
     });
   }
@@ -673,7 +681,7 @@ function generateInsights(overallRate, habitStats, bestDay, worstDay, weeklyTren
 
   if (topCat) {
     items.push({
-      emoji: '⭐',
+      iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>',
       text: `<strong>${escapeHtml(topCat)}</strong> is currently your highest rated category at <strong>${topCatAvg.toFixed(1)} / 5.0</strong>.`
     });
   }
@@ -681,7 +689,7 @@ function generateInsights(overallRate, habitStats, bestDay, worstDay, weeklyTren
   // Fallback if fresh start
   if (items.length === 0) {
     items.push({
-      emoji: '✨',
+      iconHtml: '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>',
       text: 'Start checking off your habits today! As you record ticks and ratings, personalized insights and trends will appear here.'
     });
   }

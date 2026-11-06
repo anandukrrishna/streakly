@@ -96,7 +96,9 @@ export function renderHistory() {
 
       ${history.length === 0 ? `
         <div class="empty-history-card glass-card">
-          <div class="empty-icon">🌱</div>
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="1.8" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
           <h4>Your first cycle is currently underway!</h4>
           <p>When Day 30 ends, your cycle will automatically archive here with full performance statistics, streaks, and comparisons.</p>
         </div>
@@ -128,12 +130,18 @@ export function renderHistory() {
 
                 <div class="hist-summary-highlights">
                   <div class="hist-highlight-line">
-                    <span class="hl-icon">🏆</span>
+                    <span class="hl-icon">
+                      <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </span>
                     <span class="hl-text">Star: <strong>${escapeHtml(sum && sum.bestHabit ? sum.bestHabit.name : '–')}</strong></span>
                   </div>
                   ${sum && sum.comparison ? `
                     <div class="hist-highlight-line">
-                      <span class="hl-icon">${sum.comparison.isBetter ? '📈' : '📉'}</span>
+                      <span class="hl-icon">
+                        ${sum.comparison.isBetter 
+                          ? '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>'
+                          : '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>'}
+                      </span>
                       <span class="hl-text">${sum.comparison.diffText} vs previous cycle</span>
                     </div>
                   ` : ''}
@@ -234,7 +242,7 @@ export function showCycleCompleteSummaryModal(cycle, isRollover = true) {
   const weakestHabitEl = modalOverlay.querySelector('#summary-weakest-habit');
   const compWrapEl = modalOverlay.querySelector('#summary-comparison-wrap');
 
-  if (titleEl) titleEl.textContent = isRollover ? '🎉 30-Day Cycle Complete!' : `Cycle #${cycle.cycleNumber || 1} Summary`;
+  if (titleEl) titleEl.textContent = isRollover ? '30-Day Cycle Complete!' : `Cycle #${cycle.cycleNumber || 1} Summary`;
   if (cycleNumEl) cycleNumEl.textContent = `${formatDateDisplay(cycle.startDate, 'short')} – ${formatDateDisplay(cycle.endDate, 'short')}`;
   if (pctEl) pctEl.textContent = `${summary.completionRate}%`;
   if (streakEl) streakEl.textContent = `${summary.bestStreak.streak} days (${escapeHtml(summary.bestStreak.habitName)})`;
@@ -244,9 +252,13 @@ export function showCycleCompleteSummaryModal(cycle, isRollover = true) {
   if (compWrapEl) {
     if (summary.comparison) {
       const isBetter = summary.comparison.isBetter;
+      const trendIcon = isBetter
+        ? '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>'
+        : '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>';
+
       compWrapEl.innerHTML = `
         <div class="comp-box ${isBetter ? 'comp-better' : 'comp-worse'}">
-          <span class="comp-icon">${isBetter ? '📈' : '📉'}</span>
+          <span class="comp-icon">${trendIcon}</span>
           <div class="comp-text">
             <strong>${summary.comparison.diffText}</strong> compared to previous cycle (${summary.comparison.prevRate}%).
             <span>${isBetter ? 'Outstanding momentum! Keep raising the bar.' : 'Reflect on habits to strengthen for the next 30 days.'}</span>
@@ -256,7 +268,9 @@ export function showCycleCompleteSummaryModal(cycle, isRollover = true) {
     } else {
       compWrapEl.innerHTML = `
         <div class="comp-box comp-first">
-          <span class="comp-icon">🌟</span>
+          <span class="comp-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
           <div class="comp-text">
             <strong>First 30-day baseline established!</strong>
             <span>Your future cycles will compare progress directly against this performance.</span>
